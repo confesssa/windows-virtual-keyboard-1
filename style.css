@@ -1,3 +1,25 @@
+* {
+  margin: 0;
+  text-align: center;
+  padding-top: 10px;
+}
+
+.title {
+  color: #22631e;
+}
+
+.switchLang {
+  color: #004134;
+}
+
+.textArea {
+  margin-top: 30px;
+  width: 580px;
+  height: 130px;
+  resize: none;
+  text-align: left;
+}
+
 .keyboard {
   position: fixed;
   left: 0;
