@@ -62,8 +62,8 @@ const Keyboard = {
           "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "backspace",
           "tab", "q", "w", "e", "r", "t", "y", "u", "i", "o", "p",
           "caps", "a", "s", "d", "f", "g", "h", "j", "k", "l", "enter",
-          "shift", "z", "x", "c", "v", "b", "n", "m", ",", ".", "?",
-          "ctrl", "alt", "space", "alt", "ctrl"
+          "shift", "z", "x", "c", "v", "b", "n", "m", ",", ".", "↑", "?",
+          "ctrl", "alt", "space", "ctrl", "←", "↓", "→"
       ];
 
       // Creates HTML for an icon
@@ -132,7 +132,7 @@ const Keyboard = {
                   break;
 
               case "ctrl":
-                  keyElement.classList.add("keyboard__key--wide");
+                  keyElement.classList.add("keyboard__key");
                   keyElement.innerHTML = ("Ctrl");
 
                   break;
@@ -145,7 +145,7 @@ const Keyboard = {
                   break;
 
               case "alt":
-                  keyElement.classList.add("keyboard__key--wide");
+                  keyElement.classList.add("keyboard__key");
                   keyElement.innerHTML = ("Alt");
 
 
