@@ -10,6 +10,7 @@ document.body.appendChild(switchLang);
 
 const textArea = document.createElement('textArea');
 textArea.classList.add('use-keyboard-input', 'textArea');
+textArea.getAttribute('autofocus');
 document.body.appendChild(textArea);
 
 const Keyboard = {
@@ -35,7 +36,7 @@ const Keyboard = {
       this.elements.keysContainer = document.createElement("div");
 
       // Setup main elements
-      this.elements.main.classList.add("keyboard", "keyboard--hidden");
+      this.elements.main.classList.add("keyboard");
       this.elements.keysContainer.classList.add("keyboard__keys");
       this.elements.keysContainer.appendChild(this._createKeys());
 
@@ -59,17 +60,13 @@ const Keyboard = {
       const fragment = document.createDocumentFragment();
       const keyLayout = [
           "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "backspace",
-          "q", "w", "e", "r", "t", "y", "u", "i", "o", "p",
+          "tab", "q", "w", "e", "r", "t", "y", "u", "i", "o", "p",
           "caps", "a", "s", "d", "f", "g", "h", "j", "k", "l", "enter",
-          "done", "z", "x", "c", "v", "b", "n", "m", ",", ".", "?",
-          "space"
+          "shift", "z", "x", "c", "v", "b", "n", "m", ",", ".", "?",
+          "ctrl", "alt", "space", "alt", "ctrl"
       ];
 
       // Creates HTML for an icon
-      const createIconHTML = (icon_name) => {
-          return `<i class="material-icons">${icon_name}</i>`;
-      };
-
       keyLayout.forEach(key => {
           const keyElement = document.createElement("button");
           const insertLineBreak = ["backspace", "p", "enter", "?"].indexOf(key) !== -1;
@@ -81,7 +78,7 @@ const Keyboard = {
           switch (key) {
               case "backspace":
                   keyElement.classList.add("keyboard__key--wide");
-                  keyElement.innerHTML = createIconHTML("backspace");
+                  keyElement.innerHTML = ("Backspace");
 
                   keyElement.addEventListener("click", () => {
                       this.properties.value = this.properties.value.substring(0, this.properties.value.length - 1);
@@ -92,7 +89,7 @@ const Keyboard = {
 
               case "caps":
                   keyElement.classList.add("keyboard__key--wide", "keyboard__key--activatable");
-                  keyElement.innerHTML = createIconHTML("keyboard_capslock");
+                  keyElement.innerHTML = ("CapsLock");
 
                   keyElement.addEventListener("click", () => {
                       this._toggleCapsLock();
@@ -103,7 +100,7 @@ const Keyboard = {
 
               case "enter":
                   keyElement.classList.add("keyboard__key--wide");
-                  keyElement.innerHTML = createIconHTML("keyboard_return");
+                  keyElement.innerHTML = ("Enter");
 
                   keyElement.addEventListener("click", () => {
                       this.properties.value += "\n";
@@ -114,7 +111,7 @@ const Keyboard = {
 
               case "space":
                   keyElement.classList.add("keyboard__key--extra-wide");
-                  keyElement.innerHTML = createIconHTML("space_bar");
+                  keyElement.innerHTML = ("Space");
 
                   keyElement.addEventListener("click", () => {
                       this.properties.value += " ";
@@ -123,14 +120,34 @@ const Keyboard = {
 
                   break;
 
-              case "done":
-                  keyElement.classList.add("keyboard__key--wide", "keyboard__key--dark");
-                  keyElement.innerHTML = createIconHTML("check_circle");
+              case "tab":
+                  keyElement.classList.add("keyboard__key--wide");
+                  keyElement.innerHTML = ("Tab");
 
                   keyElement.addEventListener("click", () => {
-                      this.close();
-                      this._triggerEvent("onclose");
+                      this.properties.value += "    ";
+                      this._triggerEvent("oninput");
                   });
+
+                  break;
+
+              case "ctrl":
+                  keyElement.classList.add("keyboard__key--wide");
+                  keyElement.innerHTML = ("Ctrl");
+
+                  break;
+
+              case "shift":
+                  keyElement.classList.add("keyboard__key--wide");
+                  keyElement.innerHTML = ("Shift");
+
+
+                  break;
+
+              case "alt":
+                  keyElement.classList.add("keyboard__key--wide");
+                  keyElement.innerHTML = ("Alt");
+
 
                   break;
 
@@ -175,14 +192,12 @@ const Keyboard = {
       this.properties.value = initialValue || "";
       this.eventHandlers.oninput = oninput;
       this.eventHandlers.onclose = onclose;
-      this.elements.main.classList.remove("keyboard--hidden");
   },
 
   close() {
       this.properties.value = "";
       this.eventHandlers.oninput = oninput;
       this.eventHandlers.onclose = onclose;
-      this.elements.main.classList.add("keyboard--hidden");
   }
 };
 

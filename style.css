@@ -33,10 +33,6 @@
   transition: bottom 0.4s;
 }
 
-.keyboard--hidden {
-  bottom: -100%;
-}
-
 .keyboard__keys {
   text-align: center;
 }
