@@ -10,7 +10,7 @@ document.body.appendChild(switchLang);
 
 const textArea = document.createElement('textArea');
 textArea.classList.add('use-keyboard-input', 'textArea');
-textArea.getAttribute('autofocus');
+textArea.setAttribute('autofocus', 'autofocus');
 document.body.appendChild(textArea);
 
 const Keyboard = {
