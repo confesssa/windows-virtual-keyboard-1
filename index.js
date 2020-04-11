@@ -66,7 +66,7 @@ const Keyboard = {
           "ctrl", "alt", "space", "ctrl", "←", "↓", "→"
       ];
 
-      // Creates HTML for an icon
+      // Creates HTML for button
       keyLayout.forEach(key => {
           const keyElement = document.createElement("button");
           const insertLineBreak = ["backspace", "p", "enter", "?"].indexOf(key) !== -1;
